@@ -1,63 +1,157 @@
-# VibeUi
+# Vibe UI
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+Modern, modular, and aesthetic Angular UI Component Library.
+Built with Angular 21, CDK, and Lucide Icons.
 
-## Code scaffolding
+## Installation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Install the library and required peer dependencies:
 
 ```bash
-ng generate --help
+npm install @kusena/vibe-ui lucide-angular @angular/cdk
 ```
 
-## Building
+## Setup
 
-To build the library, run:
+### 1. Styles
+Import the global styles in your `styles.scss`:
 
-```bash
-ng build vibe-ui
+```scss
+@import '@kusena/vibe-ui/styles/vibe-ui';
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+Or add to your `angular.json`:
 
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/vibe-ui
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```json
+"styles": [
+  "node_modules/@kusena/vibe-ui/styles/vibe-ui.css",
+  "src/styles.scss"
+]
 ```
 
-## Running end-to-end tests
+### 2. Icons
+Import `LucideAngularModule` and icons you want to use in your application.
 
-For end-to-end (e2e) testing, run:
+## Components
 
-```bash
-ng e2e
+### Card (`vb-card`)
+Modular card component with header, body, and footer.
+
+```html
+<vb-card maxWidth="600px">
+  <vb-card-header>
+    <h3 class="vb-card__title">Card Title</h3>
+    <div class="vb-card__actions">
+       <button>Action</button>
+    </div>
+  </vb-card-header>
+  
+  <vb-card-body [noPadding]="false">
+    <p>Card content goes here.</p>
+  </vb-card-body>
+  
+  <vb-card-footer>
+    <button>Cancel</button>
+    <button>Save</button>
+  </vb-card-footer>
+</vb-card>
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Button (`vb-button`)
+Versatile button component with variants and sizes.
 
-## Additional Resources
+```html
+<!-- Variants: primary, secondary, danger, outline, ghost, link, normal (default) -->
+<vb-button variant="primary" size="md" (onClick)="save()">
+  Save Changes
+</vb-button>
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<!-- With Icon -->
+<vb-button variant="danger" size="sm">
+  <vb-icon size="sm"><lucide-icon [img]="Trash"></lucide-icon></vb-icon>
+  Delete
+</vb-button>
+
+<!-- Loading State -->
+<vb-button [loading]="isLoading">Loading...</vb-button>
+```
+
+### Avatar (`vb-avatar`)
+Display user profile image or initials with consistent background colors.
+
+```html
+<!-- Image -->
+<vb-avatar src="assets/user.jpg" name="John Doe" size="md" shape="circle"></vb-avatar>
+
+<!-- Initials (Auto background color) -->
+<vb-avatar name="John Doe" size="md"></vb-avatar>
+
+<!-- Sizes: sm, md, lg, xl -->
+<!-- Shapes: circle, square, rounded -->
+```
+
+### Modal (`vb-modal`)
+Service-based modal system using Angular CDK.
+
+**1. Create Modal Component:**
+```typescript
+@Component({
+  imports: [ModalComponent, ModalHeaderComponent, ModalBodyComponent, ModalFooterComponent, ...],
+  template: `
+    <vb-modal>
+      <vb-modal-header title="Edit User"></vb-modal-header>
+      <vb-modal-body>
+        <form>...</form>
+      </vb-modal-body>
+      <vb-modal-footer>
+        <vb-button (onClick)="close()">Cancel</vb-button>
+        <vb-button variant="primary">Save</vb-button>
+      </vb-modal-footer>
+    </vb-modal>
+  `
+})
+export class MyModalComponent {
+  constructor(private dialogRef: DialogRef) {}
+  close() { this.dialogRef.close(); }
+}
+```
+
+**2. Open Modal:**
+```typescript
+import { VbModalService } from '@kusena/vibe-ui';
+
+export class AppComponent {
+  constructor(private modalService: VbModalService) {}
+
+  open() {
+    this.modalService.open(MyModalComponent, {
+      data: { userId: 1 }
+    });
+  }
+}
+```
+
+### Form Field (`vb-form-field`)
+Wrapped input components with support for labels, hints, prefixes, and suffixes.
+
+```html
+<vb-form-field>
+  <label>Email Address</label>
+  
+  <!-- Content before input (Icon) -->
+  <div class="vb-form-field-prefix">
+    <vb-icon><lucide-icon [img]="Mail"></lucide-icon></vb-icon>
+  </div>
+  
+  <!-- Input with vbInput directive -->
+  <input vbInput type="email" placeholder="user@example.com">
+  
+  <!-- Hint text -->
+  <div class="vb-form-field-hint">We'll never share your email.</div>
+</vb-form-field>
+```
+
+---
+
+## License
+MIT
