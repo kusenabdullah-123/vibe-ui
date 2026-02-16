@@ -10,13 +10,9 @@
 @use 'layout/dashboard';
 
 // 3. Components
-@use '../components/card/card';
 @use 'components/table';
-@use '../components/button/button';
 @use 'components/forms';
 @use 'components/badges';
-@use '../components/avatar/avatar';
-@use '../components/modal/modal';
 
 
 @use 'components/form-field';

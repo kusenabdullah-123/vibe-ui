@@ -10,7 +10,7 @@ import { LucideAngularModule, X } from 'lucide-angular';
   standalone: true,
   imports: [CommonModule, ButtonComponent, IconComponent, LucideAngularModule],
   templateUrl: './modal-header.html',
-  styleUrl: '../../styles/components/_modal.scss'
+  styleUrl: './modal.scss'
 })
 export class ModalHeaderComponent {
   /** Modal title to display */

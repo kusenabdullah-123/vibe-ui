@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'vb-modal-footer',
   standalone: true,
   template: `<div class="vb-modal__footer"><ng-content></ng-content></div>`,
-  styleUrl: '../../styles/components/_modal.scss'
+  styleUrl: './modal.scss'
 })
 export class ModalFooterComponent {}
