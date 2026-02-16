@@ -6,5 +6,31 @@
   },
   "newProjectRoot": "projects",
   "projects": {
+    "vibe-ui": {
+      "projectType": "library",
+      "root": "projects/vibe-ui",
+      "sourceRoot": "projects/vibe-ui/src",
+      "prefix": "vb",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/vibe-ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/vibe-ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/vibe-ui/tsconfig.spec.json"
+          }
+        }
+      }
+    }
   }
 }

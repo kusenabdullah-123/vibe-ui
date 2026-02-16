@@ -1,0 +1,19 @@
+:root {
+  // Dimensi
+  --sidebar-width: 16.25rem;           // 260px
+  --sidebar-collapsed-width: 4.375rem; // 70px
+  --header-height: 4rem;               // 64px
+  
+  // Warna
+  --bg-body: #f3f4f6;
+  --bg-sidebar: #111827;
+  --bg-surface: #ffffff;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --text-sidebar: #9ca3af;
+  --text-sidebar-hover: #ffffff;
+  --primary-color: #3b82f6;
+  
+  // Transisi
+  --transition-speed: 0.3s;
+}

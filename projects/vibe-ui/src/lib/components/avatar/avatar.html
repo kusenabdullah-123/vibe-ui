@@ -1,0 +1,19 @@
+<div class="vb-avatar" 
+     [class.vb-avatar--sm]="size() === 'sm'"
+     [class.vb-avatar--md]="size() === 'md'"
+     [class.vb-avatar--lg]="size() === 'lg'"
+     [class.vb-avatar--xl]="size() === 'xl'"
+     [class.vb-avatar--circle]="shape() === 'circle'"
+     [class.vb-avatar--square]="shape() === 'square'"
+     [class.vb-avatar--rounded]="shape() === 'rounded'">
+  
+  @if (src()) {
+    <img [src]="src()" [alt]="name()" class="vb-avatar__img">
+  } @else {
+    <div class="vb-avatar__initials" 
+         [style.background-color]="bgColor().bg"
+         [style.color]="bgColor().text">
+      {{ initials() }}
+    </div>
+  }
+</div>

@@ -1,0 +1,21 @@
+<li class="dashboard__nav-item">
+  <a [routerLink]="link()" routerLinkActive="dashboard__nav-link--active" class="dashboard__nav-link">
+    <!-- Slot untuk icon menggunakan ng-content select -->
+    <span class="dashboard__nav-icon">
+      <ng-content select="vb-icon"></ng-content>
+      <!-- Fallback: text icon jika ada -->
+      @if (icon() && icon() !== '') {
+        {{ icon() }}
+      }
+    </span>
+    
+    <!-- Text/label dengan flexible content projection -->
+    <span class="dashboard__nav-text">
+      @if (label()) {
+        {{ label() }}
+      } @else {
+        <ng-content></ng-content>
+      }
+    </span>
+  </a>
+</li>

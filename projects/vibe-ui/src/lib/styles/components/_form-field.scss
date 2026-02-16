@@ -1,0 +1,324 @@
+vb-form-field {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: 1.75rem;
+
+  .vb-form-field {
+
+    &-flex {
+      display: flex;
+      align-items: center;
+      z-index: 0;
+      width: 100%;
+      position: relative;
+      height: 3.5rem;
+
+      &:before {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background-color: #ccc;
+        z-index: 0;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        height: 2px;
+        background-color: var(--primary-color, #3b82f6);
+        width: 0;
+        left: 50%;
+        opacity: 0;
+        position: absolute;
+        bottom: 0;
+        transition: all 0.15s ease-in-out;
+      }
+    }
+
+    &-infix {
+      flex: 1 1 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      opacity: 1;
+    }
+
+    &-input {
+      &-prefix,
+      &-suffix {
+        flex: 0 1 auto;
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+
+    &-input-prefix,
+    &-prefix {
+      padding-right: 1rem;
+    }
+
+    &-input-suffix,
+    &-suffix {
+      padding-left: 1rem;
+    }
+
+    &-hint {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      color: var(--text-muted, #6b7280);
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    -webkit-appearance: none;
+    height: 100%;
+    width: 100%;
+    border: none;
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    font-family: inherit;
+    appearance: none;
+    box-sizing: border-box;
+    padding: 0;
+    color: inherit;
+
+    &:-webkit-autofill {
+      -webkit-background-clip: text;
+    }
+
+    &::placeholder {
+      font-family: inherit;
+      color: var(--text-muted, #9ca3af);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  textarea {
+    height: auto;
+    padding: 1.5rem 0 2px;
+    width: 100%;
+    resize: vertical;
+  }
+
+  select {
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="rgba(0,0,0,.67)" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>');
+    background-size: 1.5rem 1.5rem;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 0.5rem) 50%;
+    padding-right: 2.5rem;
+  }
+
+  input[type="date"],
+  input[type="datetime-local"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="rgba(0,0,0,.67)" d="M19,4H18V2H16V4H8V2H6V4H5C3.89,4 3,4.9 3,6V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V6A2,2 0 0,0 19,4M19,20H5V10H19V20M19,8H5V6H19V8M12,13H17V18H12V13Z" /></svg>');
+    background-size: 1.5rem 1.5rem;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 0.5rem) 50%;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-calendar-picker-indicator {
+      background: transparent;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      color: transparent;
+      cursor: pointer;
+      height: auto;
+      position: absolute;
+      width: auto;
+    }
+  }
+
+  label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.15s ease-in-out;
+    pointer-events: none;
+    color: var(--text-muted, #6b7280);
+  }
+
+  &:has(label) {
+    .vb-form-field-infix > *:not(label) {
+      opacity: 0;
+    }
+
+    &:has(input:focus),
+    &:has(select:focus),
+    &:has(textarea:focus),
+    &.has-content {
+      .vb-form-field-infix > *:not(label) {
+        opacity: 1;
+      }
+
+      label {
+        top: 0;
+        font-size: 0.75rem;
+        color: var(--primary-color, #3b82f6);
+      }
+    }
+  }
+
+  &:has(input:focus),
+  &:has(select:focus),
+  &:has(textarea:focus) {
+    .vb-form-field-flex {
+      &:after {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+      }
+    }
+  }
+
+  &.has-error {
+    label {
+      color: #ef4444;
+    }
+
+    .vb-form-field {
+      &-flex {
+        &:before,
+        &:after {
+          background-color: #ef4444;
+        }
+
+        input,
+        select,
+        textarea {
+          color: #ef4444;
+        }
+      }
+
+      &-hint {
+        color: #ef4444;
+      }
+    }
+  }
+
+  // Boxed variant
+  &.vb-form-field-boxed {
+    .vb-form-field {
+      &-flex {
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+        padding: 0 0.75rem;
+        height: 3.5rem;
+
+        &:before {
+          display: none;
+        }
+
+        &:after {
+          display: none;
+        }
+      }
+
+      &-prefix,
+      &-suffix {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+
+      &-input {
+        &-prefix,
+        &-suffix {
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+      }
+
+      &-hint {
+        padding: 0 0.75rem;
+      }
+    }
+
+    label {
+      background-color: var(--bg-surface, #fff);
+      padding: 0 0.5rem;
+    }
+
+    &:not(.has-error) {
+      &:has(input:focus),
+      &:has(select:focus),
+      &:has(textarea:focus) {
+        .vb-form-field-flex {
+          border-color: var(--primary-color, #3b82f6);
+        }
+
+        label {
+          color: var(--primary-color, #3b82f6);
+        }
+      }
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 0 0.5rem;
+    }
+
+    &.has-error {
+      .vb-form-field-flex {
+        border-color: #ef4444;
+      }
+    }
+  }
+
+  // Narrow variant
+  &.vb-form-field-narrow {
+    margin-bottom: 1.25rem;
+
+    .vb-form-field {
+      &-flex {
+        height: 2.5rem;
+      }
+
+      &-input-prefix,
+      &-prefix {
+        padding-left: 0.25rem;
+        padding-right: 0.5rem;
+      }
+
+      &-input-suffix,
+      &-suffix {
+        padding-right: 0.25rem;
+        padding-left: 0.5rem;
+      }
+    }
+
+    &.vb-form-field-boxed {
+      .vb-form-field {
+        &-suffix,
+        &-prefix,
+        &-input-prefix,
+        &-input-suffix {
+          padding: 0 0.25rem;
+        }
+      }
+    }
+
+    input[type="date"],
+    input[type="datetime-local"],
+    select {
+      background-position: calc(100% - 0.25rem) 50%;
+    }
+  }
+}

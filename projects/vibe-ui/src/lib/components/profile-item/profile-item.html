@@ -1,0 +1,14 @@
+@if (divider()) {
+  <div class="dashboard__dropdown-divider"></div>
+} @else {
+  <a [href]="href()" class="dashboard__dropdown-item" [style.color]="danger() ? '#ef4444' : null">
+    <!-- Icon support dengan content select atau input -->
+    <ng-content select="vb-icon"></ng-content>
+    @if (icon() && icon() !== '') {
+      <span>{{ icon() }}</span>
+    }
+    
+    <!-- Content untuk text label -->
+    <ng-content></ng-content>
+  </a>
+}

@@ -1,0 +1,14 @@
+<div class="vb-modal__header">
+  <h3 class="vb-modal__title">
+    @if(title()) {
+      {{ title() }}
+    }
+    <ng-content></ng-content>
+  </h3>
+  
+  @if (showClose()) {
+    <vb-button variant="ghost" size="sm" (onClick)="close()">
+      <vb-icon size="sm"><lucide-icon [img]="X"></lucide-icon></vb-icon>
+    </vb-button>
+  }
+</div>

@@ -1,0 +1,64 @@
+<div class="dashboard" [class.dashboard--collapsed]="isCollapsed">
+  
+  <aside class="dashboard__sidebar">
+    <div class="dashboard__sidebar-header">
+      <button class="dashboard__toggle-btn" (click)="toggleSidebar()" aria-label="Toggle Sidebar">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <span class="dashboard__brand">Angular UI</span>
+    </div>
+
+    <nav class="dashboard__nav">
+      <ul class="dashboard__nav-list">
+        <li class="dashboard__nav-item">
+          <a routerLink="/users" routerLinkActive="dashboard__nav-link--active" class="dashboard__nav-link">
+            <span class="dashboard__nav-icon">👥</span>
+            <span class="dashboard__nav-text">Users</span>
+          </a>
+        </li>
+       <!-- Since only 2 pages requested, I will stick to Users mostly -->
+        <li class="dashboard__nav-item">
+          <a routerLink="/users/new" routerLinkActive="dashboard__nav-link--active" class="dashboard__nav-link">
+            <span class="dashboard__nav-icon">📝</span>
+            <span class="dashboard__nav-text">Add User (Page)</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="dashboard__main">
+    <header class="dashboard__topbar">
+      <h2>Dashboard Overview</h2>
+      <div class="dashboard__profile" (click)="toggleProfileDropdown()">
+        <img [src]="adminAvatar" [alt]="adminName" class="avatar">
+        <span>{{ adminName }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-left: 0.5rem; color: var(--text-muted);">
+          <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+        </svg>
+        
+        <div class="dashboard__dropdown" [class.dashboard__dropdown--active]="isProfileDropdownOpen">
+          <a href="#" class="dashboard__dropdown-item">
+            <span>👤</span> Profil Saya
+          </a>
+          <a href="#" class="dashboard__dropdown-item">
+            <span>⚙️</span> Pengaturan
+          </a>
+          <div class="dashboard__dropdown-divider"></div>
+          <a href="#" class="dashboard__dropdown-item" style="color: #ef4444;">
+            <span>🚪</span> Keluar
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard__content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+</div>

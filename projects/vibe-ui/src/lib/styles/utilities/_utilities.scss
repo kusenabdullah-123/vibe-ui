@@ -1,0 +1,29 @@
+// -- Grid Utilities --
+.grid {
+  display: grid;
+  gap: 1rem;
+  
+  &--2-cols {
+    grid-template-columns: repeat(1, 1fr);
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &--3-cols {
+    grid-template-columns: repeat(1, 1fr);
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+// -- Text Utilities --
+.text-right { text-align: right; }
+.text-bold { font-weight: 600; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+
+// -- Spacing --
+.mt-4 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 1rem; }

@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.json",
+  "dest": "../../dist/vibe-ui",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "cssUrl": "inline"
+  },
+  "assets": [
+    {
+      "glob": "**/*.scss",
+      "input": "./src/lib/styles",
+      "output": "./styles"
+    }
+  ]
+}

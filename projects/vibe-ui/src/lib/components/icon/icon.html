@@ -1,0 +1,9 @@
+<span class="vb-icon" [ngClass]="getSizeClass()" [ngStyle]="getStyles()">
+  <!-- Content projection untuk lucide icon atau custom SVG -->
+  <ng-content></ng-content>
+  
+  <!-- Fallback: jika tidak ada content, tampilkan name sebagai text/emoji -->
+  @if (name()) {
+    <span class="vb-icon__fallback">{{ name() }}</span>
+  }
+</span>
